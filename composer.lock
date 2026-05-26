@@ -4662,16 +4662,16 @@
         },
         {
             "name": "prestashop/classic",
-            "version": "3.1.1",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PrestaShop/classic-theme.git",
-                "reference": "de7e61d9c4ef752c31d6c3d8633c51be33402865"
+                "reference": "b296487cdef20d6427c65b67363d4ad1ec8e5d5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PrestaShop/classic-theme/zipball/de7e61d9c4ef752c31d6c3d8633c51be33402865",
-                "reference": "de7e61d9c4ef752c31d6c3d8633c51be33402865",
+                "url": "https://api.github.com/repos/PrestaShop/classic-theme/zipball/b296487cdef20d6427c65b67363d4ad1ec8e5d5b",
+                "reference": "b296487cdef20d6427c65b67363d4ad1ec8e5d5b",
                 "shasum": ""
             },
             "require-dev": {
@@ -4696,9 +4696,9 @@
             "description": "Classic theme for develop PrestaShop version",
             "support": {
                 "issues": "https://github.com/PrestaShop/classic-theme/issues",
-                "source": "https://github.com/PrestaShop/classic-theme/tree/3.1.1"
+                "source": "https://github.com/PrestaShop/classic-theme/tree/3.1.2"
             },
-            "time": "2026-02-17T13:50:00+00:00"
+            "time": "2026-05-11T09:08:00+00:00"
         },
         {
             "name": "prestashop/contactform",
@@ -4747,16 +4747,16 @@
         },
         {
             "name": "prestashop/dashactivity",
-            "version": "v2.1.1",
+            "version": "v2.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PrestaShop/dashactivity.git",
-                "reference": "e604732a897a26d751afac09936bdcb7eb7b9044"
+                "reference": "c428ae5b4030dd3b551919cb328111ded80c3ef8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PrestaShop/dashactivity/zipball/e604732a897a26d751afac09936bdcb7eb7b9044",
-                "reference": "e604732a897a26d751afac09936bdcb7eb7b9044",
+                "url": "https://api.github.com/repos/PrestaShop/dashactivity/zipball/c428ae5b4030dd3b551919cb328111ded80c3ef8",
+                "reference": "c428ae5b4030dd3b551919cb328111ded80c3ef8",
                 "shasum": ""
             },
             "require": {
@@ -4779,9 +4779,10 @@
             "description": "PrestaShop module dashactivity",
             "homepage": "https://github.com/PrestaShop/dashactivity",
             "support": {
-                "source": "https://github.com/PrestaShop/dashactivity/tree/v2.1.1"
+                "issues": "https://github.com/PrestaShop/dashactivity/issues",
+                "source": "https://github.com/PrestaShop/dashactivity/tree/v2.1.2"
             },
-            "time": "2024-04-08T11:12:02+00:00"
+            "time": "2026-05-25T13:31:15+00:00"
         },
         {
             "name": "prestashop/dashgoals",
