@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-    <name>onepagecheckout</name>
+    <name>dp_onepagecheckout</name>
     <displayName><![CDATA[One Page Checkout]]></displayName>
     <version><![CDATA[1.0.0]]></version>
     <description><![CDATA[Modern one-page checkout: all checkout steps on a single page, updated over AJAX without full page reloads.]]></description>

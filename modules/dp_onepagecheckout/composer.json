@@ -1,5 +1,5 @@
 {
-    "name": "integritty/onepagecheckout",
+    "name": "integritty/dp_onepagecheckout",
     "description": "Modern one-page checkout module for PrestaShop 9 — all checkout steps on a single page with AJAX updates.",
     "type": "prestashop-module",
     "license": "MIT",
@@ -17,7 +17,7 @@
             "Integritty\\OnePageCheckout\\": "src/"
         },
         "classmap": [
-            "onepagecheckout.php"
+            "dp_onepagecheckout.php"
         ],
         "exclude-from-classmap": []
     },

@@ -14,13 +14,13 @@ if (!defined('_PS_VERSION_')) {
 
 use Integritty\OnePageCheckout\OpcCheckoutProcess;
 
-class OnePageCheckout extends Module
+class Dp_OnePageCheckout extends Module
 {
-    public const CONFIG_ENABLED = 'OPC_ENABLED';
-    public const CONFIG_LAYOUT = 'OPC_LAYOUT';
-    public const CONFIG_AJAX = 'OPC_AJAX';
-    public const CONFIG_UNLOCK_ALL = 'OPC_UNLOCK_ALL';
-    public const CONFIG_STICKY_SUMMARY = 'OPC_STICKY_SUMMARY';
+    public const CONFIG_ENABLED = 'DP_OPC_ENABLED';
+    public const CONFIG_LAYOUT = 'DP_OPC_LAYOUT';
+    public const CONFIG_AJAX = 'DP_OPC_AJAX';
+    public const CONFIG_UNLOCK_ALL = 'DP_OPC_UNLOCK_ALL';
+    public const CONFIG_STICKY_SUMMARY = 'DP_OPC_STICKY_SUMMARY';
 
     public const LAYOUT_COLUMNS = 'columns';
     public const LAYOUT_STACKED = 'stacked';
@@ -32,7 +32,7 @@ class OnePageCheckout extends Module
 
     public function __construct()
     {
-        $this->name = 'onepagecheckout';
+        $this->name = 'dp_onepagecheckout';
         $this->tab = 'checkout';
         $this->version = '1.0.0';
         $this->author = 'Integritty';
@@ -42,16 +42,16 @@ class OnePageCheckout extends Module
 
         parent::__construct();
 
-        $this->displayName = $this->trans('One Page Checkout', [], 'Modules.Onepagecheckout.Admin');
+        $this->displayName = $this->trans('One Page Checkout', [], 'Modules.Dponepagecheckout.Admin');
         $this->description = $this->trans(
             'Modern one-page checkout: all checkout steps on a single page, updated over AJAX without full page reloads.',
             [],
-            'Modules.Onepagecheckout.Admin'
+            'Modules.Dponepagecheckout.Admin'
         );
         $this->confirmUninstall = $this->trans(
             'Are you sure you want to uninstall One Page Checkout? The default multi-step checkout will be restored.',
             [],
-            'Modules.Onepagecheckout.Admin'
+            'Modules.Dponepagecheckout.Admin'
         );
     }
 
@@ -107,7 +107,7 @@ class OnePageCheckout extends Module
             $this->context,
             (bool) Configuration::get(self::CONFIG_UNLOCK_ALL)
         );
-        $opcProcess->setTemplate('module:onepagecheckout/views/templates/front/checkout-process.tpl');
+        $opcProcess->setTemplate('module:dp_onepagecheckout/views/templates/front/checkout-process.tpl');
 
         $this->context->smarty->assign('opc', [
             'layout' => $this->getLayout(),
@@ -127,12 +127,12 @@ class OnePageCheckout extends Module
         }
 
         $controller->registerStylesheet(
-            'module-onepagecheckout-front',
+            'module-dp_onepagecheckout-front',
             'modules/' . $this->name . '/views/css/front.css',
             ['media' => 'all', 'priority' => 200]
         );
         $controller->registerJavascript(
-            'module-onepagecheckout-front',
+            'module-dp_onepagecheckout-front',
             'modules/' . $this->name . '/views/js/front.js',
             ['position' => 'bottom', 'priority' => 200]
         );
@@ -150,7 +150,7 @@ class OnePageCheckout extends Module
     {
         $output = '';
 
-        if (Tools::isSubmit('submitOnepagecheckout')) {
+        if (Tools::isSubmit('submitDpOnepagecheckout')) {
             $layout = (string) Tools::getValue(self::CONFIG_LAYOUT, self::LAYOUT_COLUMNS);
             if (!in_array($layout, [self::LAYOUT_COLUMNS, self::LAYOUT_STACKED], true)) {
                 $layout = self::LAYOUT_COLUMNS;
@@ -189,27 +189,27 @@ class OnePageCheckout extends Module
         $form = [
             'form' => [
                 'legend' => [
-                    'title' => $this->trans('Settings', [], 'Modules.Onepagecheckout.Admin'),
+                    'title' => $this->trans('Settings', [], 'Modules.Dponepagecheckout.Admin'),
                     'icon' => 'icon-cogs',
                 ],
                 'input' => [
                     [
                         'type' => 'switch',
-                        'label' => $this->trans('Enable one-page checkout', [], 'Modules.Onepagecheckout.Admin'),
+                        'label' => $this->trans('Enable one-page checkout', [], 'Modules.Dponepagecheckout.Admin'),
                         'name' => self::CONFIG_ENABLED,
                         'is_bool' => true,
-                        'desc' => $this->trans('Turn off to restore the default multi-step checkout without uninstalling.', [], 'Modules.Onepagecheckout.Admin'),
+                        'desc' => $this->trans('Turn off to restore the default multi-step checkout without uninstalling.', [], 'Modules.Dponepagecheckout.Admin'),
                         'values' => $this->getSwitchValues(self::CONFIG_ENABLED),
                     ],
                     [
                         'type' => 'select',
-                        'label' => $this->trans('Layout', [], 'Modules.Onepagecheckout.Admin'),
+                        'label' => $this->trans('Layout', [], 'Modules.Dponepagecheckout.Admin'),
                         'name' => self::CONFIG_LAYOUT,
-                        'desc' => $this->trans('"Columns" shows the steps side by side on large screens. "Stacked" keeps them in a single column.', [], 'Modules.Onepagecheckout.Admin'),
+                        'desc' => $this->trans('"Columns" shows the steps side by side on large screens. "Stacked" keeps them in a single column.', [], 'Modules.Dponepagecheckout.Admin'),
                         'options' => [
                             'query' => [
-                                ['id' => self::LAYOUT_COLUMNS, 'name' => $this->trans('Columns (recommended)', [], 'Modules.Onepagecheckout.Admin')],
-                                ['id' => self::LAYOUT_STACKED, 'name' => $this->trans('Stacked', [], 'Modules.Onepagecheckout.Admin')],
+                                ['id' => self::LAYOUT_COLUMNS, 'name' => $this->trans('Columns (recommended)', [], 'Modules.Dponepagecheckout.Admin')],
+                                ['id' => self::LAYOUT_STACKED, 'name' => $this->trans('Stacked', [], 'Modules.Dponepagecheckout.Admin')],
                             ],
                             'id' => 'id',
                             'name' => 'name',
@@ -217,26 +217,26 @@ class OnePageCheckout extends Module
                     ],
                     [
                         'type' => 'switch',
-                        'label' => $this->trans('AJAX updates', [], 'Modules.Onepagecheckout.Admin'),
+                        'label' => $this->trans('AJAX updates', [], 'Modules.Dponepagecheckout.Admin'),
                         'name' => self::CONFIG_AJAX,
                         'is_bool' => true,
-                        'desc' => $this->trans('Submit checkout steps in the background and refresh the page content without a full reload.', [], 'Modules.Onepagecheckout.Admin'),
+                        'desc' => $this->trans('Submit checkout steps in the background and refresh the page content without a full reload.', [], 'Modules.Dponepagecheckout.Admin'),
                         'values' => $this->getSwitchValues(self::CONFIG_AJAX),
                     ],
                     [
                         'type' => 'switch',
-                        'label' => $this->trans('Unlock all steps immediately', [], 'Modules.Onepagecheckout.Admin'),
+                        'label' => $this->trans('Unlock all steps immediately', [], 'Modules.Dponepagecheckout.Admin'),
                         'name' => self::CONFIG_UNLOCK_ALL,
                         'is_bool' => true,
-                        'desc' => $this->trans('Show every step form right away instead of unlocking them progressively. Delivery and payment options may stay empty until an address is provided.', [], 'Modules.Onepagecheckout.Admin'),
+                        'desc' => $this->trans('Show every step form right away instead of unlocking them progressively. Delivery and payment options may stay empty until an address is provided.', [], 'Modules.Dponepagecheckout.Admin'),
                         'values' => $this->getSwitchValues(self::CONFIG_UNLOCK_ALL),
                     ],
                     [
                         'type' => 'switch',
-                        'label' => $this->trans('Sticky order summary', [], 'Modules.Onepagecheckout.Admin'),
+                        'label' => $this->trans('Sticky order summary', [], 'Modules.Dponepagecheckout.Admin'),
                         'name' => self::CONFIG_STICKY_SUMMARY,
                         'is_bool' => true,
-                        'desc' => $this->trans('Keep the cart summary visible while the customer scrolls.', [], 'Modules.Onepagecheckout.Admin'),
+                        'desc' => $this->trans('Keep the cart summary visible while the customer scrolls.', [], 'Modules.Dponepagecheckout.Admin'),
                         'values' => $this->getSwitchValues(self::CONFIG_STICKY_SUMMARY),
                     ],
                 ],
@@ -251,7 +251,7 @@ class OnePageCheckout extends Module
         $helper->name_controller = $this->name;
         $helper->token = Tools::getAdminTokenLite('AdminModules');
         $helper->currentIndex = AdminController::$currentIndex . '&configure=' . $this->name;
-        $helper->submit_action = 'submitOnepagecheckout';
+        $helper->submit_action = 'submitDpOnepagecheckout';
         $helper->default_form_language = (int) Configuration::get('PS_LANG_DEFAULT');
         $helper->fields_value = [
             self::CONFIG_ENABLED => (int) Configuration::get(self::CONFIG_ENABLED),

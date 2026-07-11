@@ -1,4 +1,4 @@
-# One Page Checkout for PrestaShop 9
+# dp_onepagecheckout — One Page Checkout for PrestaShop 9
 
 Modern single-page checkout module. All native checkout steps — personal
 information, addresses, delivery and payment — are displayed together on one
@@ -48,15 +48,15 @@ every step reachable from the start instead.
 
 ```bash
 cd {shop_root}/modules
-git clone git@github.com:david-prochazka/onepagecheckout.git onepagecheckout
+git clone git@github.com:david-prochazka/dp_onepagecheckout.git dp_onepagecheckout
 ```
 
 or upload a zip of this repository (the archive folder must be named
-`onepagecheckout`). Then install it from **Back office → Modules → Module
+`dp_onepagecheckout`). Then install it from **Back office → Modules → Module
 Manager**, or:
 
 ```bash
-php bin/console prestashop:module install onepagecheckout
+php bin/console prestashop:module install dp_onepagecheckout
 ```
 
 ## Configuration
@@ -91,7 +91,7 @@ All settings are shop-scoped (multistore-safe via `Configuration`).
 
 ```bash
 composer install   # dev tooling only, the module has no runtime dependencies
-php -l onepagecheckout.php src/OpcCheckoutProcess.php
+php -l dp_onepagecheckout.php src/OpcCheckoutProcess.php
 ```
 
 CI (GitHub Actions) lints every PHP file on PHP 8.1–8.3.

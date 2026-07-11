@@ -20,7 +20,7 @@
       {if !$step.is_reachable}
         <p class="opc-panel__locked-note">
           <i class="material-icons" aria-hidden="true">lock</i>
-          {l s='Complete the previous steps to unlock this section.' d='Modules.Onepagecheckout.Shop'}
+          {l s='Complete the previous steps to unlock this section.' d='Modules.Dponepagecheckout.Shop'}
         </p>
       {/if}
     </div>
