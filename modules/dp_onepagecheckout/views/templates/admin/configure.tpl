@@ -1,8 +1,8 @@
 {**
  * One Page Checkout — configuration page intro panel.
  *
- * @author    Integritty
- * @copyright 2026 Integritty
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
  * @license   https://opensource.org/licenses/MIT MIT License
  *}
 <div class="panel">

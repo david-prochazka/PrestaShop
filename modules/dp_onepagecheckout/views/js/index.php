@@ -2,8 +2,8 @@
 /**
  * Security stub — prevents directory listing.
  *
- * @author    Integritty
- * @copyright 2026 Integritty
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
  * @license   https://opensource.org/licenses/MIT MIT License
  */
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');

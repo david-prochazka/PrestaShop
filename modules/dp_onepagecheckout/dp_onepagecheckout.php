@@ -2,8 +2,8 @@
 /**
  * One Page Checkout — modern single-page checkout for PrestaShop 9.
  *
- * @author    Integritty
- * @copyright 2026 Integritty
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
  * @license   https://opensource.org/licenses/MIT MIT License
  */
 declare(strict_types=1);
@@ -12,7 +12,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-use Integritty\OnePageCheckout\OpcCheckoutProcess;
+use DavidProchazka\OnePageCheckout\OpcCheckoutProcess;
 
 class Dp_OnePageCheckout extends Module
 {
@@ -35,7 +35,7 @@ class Dp_OnePageCheckout extends Module
         $this->name = 'dp_onepagecheckout';
         $this->tab = 'checkout';
         $this->version = '1.0.0';
-        $this->author = 'Integritty';
+        $this->author = 'David Procházka';
         $this->need_instance = 0;
         $this->bootstrap = true;
         $this->ps_versions_compliancy = ['min' => '9.0.0', 'max' => _PS_VERSION_];

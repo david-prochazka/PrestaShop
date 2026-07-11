@@ -1,12 +1,11 @@
 {
-    "name": "integritty/dp_onepagecheckout",
+    "name": "david-prochazka/dp_onepagecheckout",
     "description": "Modern one-page checkout module for PrestaShop 9 — all checkout steps on a single page with AJAX updates.",
     "type": "prestashop-module",
     "license": "MIT",
     "authors": [
         {
-            "name": "Integritty",
-            "email": "david.prochazka@integritty.cz"
+            "name": "David Procházka"
         }
     ],
     "require": {
@@ -14,7 +13,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Integritty\\OnePageCheckout\\": "src/"
+            "DavidProchazka\\OnePageCheckout\\": "src/"
         },
         "classmap": [
             "dp_onepagecheckout.php"

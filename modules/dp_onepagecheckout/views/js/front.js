@@ -10,8 +10,8 @@
  * The classic theme binds its checkout handlers with event delegation on
  * <body>, so they keep working after the swap.
  *
- * @author    Integritty
- * @copyright 2026 Integritty
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
  * @license   https://opensource.org/licenses/MIT MIT License
  */
 (function () {

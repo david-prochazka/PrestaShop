@@ -5,8 +5,8 @@
  * themselves are still rendered by the active theme's step templates, so
  * theme customizations and module hooks inside steps keep working.
  *
- * @author    Integritty
- * @copyright 2026 Integritty
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
  * @license   https://opensource.org/licenses/MIT MIT License
  *}
 <div id="opc-wrapper"

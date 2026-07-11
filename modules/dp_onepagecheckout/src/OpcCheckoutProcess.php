@@ -2,13 +2,13 @@
 /**
  * One Page Checkout — modern single-page checkout for PrestaShop 9.
  *
- * @author    Integritty
- * @copyright 2026 Integritty
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
  * @license   https://opensource.org/licenses/MIT MIT License
  */
 declare(strict_types=1);
 
-namespace Integritty\OnePageCheckout;
+namespace DavidProchazka\OnePageCheckout;
 
 use CheckoutProcess;
 use CheckoutStepInterface;
