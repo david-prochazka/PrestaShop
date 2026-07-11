@@ -8,7 +8,7 @@
  */
 declare(strict_types=1);
 
-namespace DavidProchazka\OnePageCheckout;
+namespace Dapro\OnePageCheckout;
 
 use CheckoutProcess;
 use CheckoutStepInterface;

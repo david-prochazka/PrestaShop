@@ -12,7 +12,7 @@ if (!defined('_PS_VERSION_')) {
     exit;
 }
 
-use DavidProchazka\OnePageCheckout\OpcCheckoutProcess;
+use Dapro\OnePageCheckout\OpcCheckoutProcess;
 
 class Dp_OnePageCheckout extends Module
 {
