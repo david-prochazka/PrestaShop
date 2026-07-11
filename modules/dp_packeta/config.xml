@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>dp_packeta</name>
+    <displayName><![CDATA[Packeta Delivery Methods]]></displayName>
+    <version><![CDATA[1.0.0]]></version>
+    <description><![CDATA[Link existing carriers to Packeta (Zásilkovna) pickup points or home delivery per country, with pickup point selection in checkout and packet export to the Packeta API.]]></description>
+    <author><![CDATA[David Procházka]]></author>
+    <tab><![CDATA[shipping_logistics]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>0</need_instance>
+</module>

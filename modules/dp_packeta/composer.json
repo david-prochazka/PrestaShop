@@ -1,0 +1,27 @@
+{
+    "name": "david-prochazka/dp_packeta",
+    "description": "Packeta (Zásilkovna) delivery methods for PrestaShop 9 — link existing carriers to Packeta pickup points or home delivery per country, with packet export to the Packeta API.",
+    "type": "prestashop-module",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Procházka"
+        }
+    ],
+    "require": {
+        "php": ">=8.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Dapro\\Packeta\\": "src/"
+        },
+        "classmap": [
+            "dp_packeta.php"
+        ],
+        "exclude-from-classmap": []
+    },
+    "config": {
+        "prepend-autoloader": false,
+        "preferred-install": "dist"
+    }
+}

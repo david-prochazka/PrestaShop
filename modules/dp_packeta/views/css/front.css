@@ -1,0 +1,28 @@
+/**
+ * Packeta Delivery Methods — checkout styles.
+ *
+ * @author    David Procházka
+ * @copyright 2026 David Procházka
+ * @license   https://opensource.org/licenses/MIT MIT License
+ */
+.dp-packeta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+}
+
+.dp-packeta--hidden {
+  display: none;
+}
+
+.dp-packeta__selected {
+  font-weight: 600;
+}
+
+.dp-packeta__error {
+  color: #dc3545;
+  font-weight: 600;
+  flex-basis: 100%;
+}

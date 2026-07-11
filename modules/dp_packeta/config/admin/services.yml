@@ -1,0 +1,46 @@
+services:
+  _defaults:
+    public: true
+
+  Dapro\Packeta\Repository\CarrierMappingRepository: ~
+
+  Dapro\Packeta\Repository\SelectionRepository: ~
+
+  Dapro\Packeta\Service\CarrierLinker: ~
+
+  dp_packeta.form.settings_data_configuration:
+    class: Dapro\Packeta\Form\SettingsDataConfiguration
+    arguments:
+      - '@prestashop.adapter.legacy.configuration'
+
+  dp_packeta.form.settings_form_data_provider:
+    class: Dapro\Packeta\Form\SettingsFormDataProvider
+    arguments:
+      - '@dp_packeta.form.settings_data_configuration'
+
+  dp_packeta.form.settings_form_handler:
+    class: PrestaShop\PrestaShop\Core\Form\Handler
+    arguments:
+      - '@form.factory'
+      - '@prestashop.core.hook.dispatcher'
+      - '@dp_packeta.form.settings_form_data_provider'
+      - 'Dapro\Packeta\Form\SettingsType'
+      - 'DpPacketaSettings'
+
+  Dapro\Packeta\Form\SettingsType:
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  Dapro\Packeta\Form\CarrierMappingType:
+    parent: 'form.type.translatable.aware'
+    public: true
+    tags:
+      - { name: form.type }
+
+  Dapro\Packeta\Controller\Admin\ConfigurationController:
+    autowire: true
+    autoconfigure: true
+    arguments:
+      $settingsFormHandler: '@dp_packeta.form.settings_form_handler'

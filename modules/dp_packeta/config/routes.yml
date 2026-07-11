@@ -1,0 +1,52 @@
+dp_packeta_configuration:
+  path: /dp_packeta/configuration
+  methods: [GET, POST]
+  defaults:
+    _controller: 'Dapro\Packeta\Controller\Admin\ConfigurationController::indexAction'
+    _legacy_controller: AdminDpPacketaConfiguration
+    _legacy_link: AdminDpPacketaConfiguration
+
+dp_packeta_mapping_edit:
+  path: /dp_packeta/mapping/{mappingId}/edit
+  methods: [GET, POST]
+  requirements:
+    mappingId: \d+
+  defaults:
+    _controller: 'Dapro\Packeta\Controller\Admin\ConfigurationController::editMappingAction'
+    _legacy_controller: AdminDpPacketaConfiguration
+
+dp_packeta_mapping_delete:
+  path: /dp_packeta/mapping/{mappingId}/delete
+  methods: [POST]
+  requirements:
+    mappingId: \d+
+  defaults:
+    _controller: 'Dapro\Packeta\Controller\Admin\ConfigurationController::deleteMappingAction'
+    _legacy_controller: AdminDpPacketaConfiguration
+
+dp_packeta_mapping_toggle:
+  path: /dp_packeta/mapping/{mappingId}/toggle
+  methods: [POST]
+  requirements:
+    mappingId: \d+
+  defaults:
+    _controller: 'Dapro\Packeta\Controller\Admin\ConfigurationController::toggleMappingAction'
+    _legacy_controller: AdminDpPacketaConfiguration
+
+dp_packeta_export_order:
+  path: /dp_packeta/order/{orderId}/export
+  methods: [POST]
+  requirements:
+    orderId: \d+
+  defaults:
+    _controller: 'Dapro\Packeta\Controller\Admin\ConfigurationController::exportOrderAction'
+    _legacy_controller: AdminDpPacketaConfiguration
+
+dp_packeta_order_label:
+  path: /dp_packeta/order/{orderId}/label
+  methods: [GET]
+  requirements:
+    orderId: \d+
+  defaults:
+    _controller: 'Dapro\Packeta\Controller\Admin\ConfigurationController::orderLabelAction'
+    _legacy_controller: AdminDpPacketaConfiguration

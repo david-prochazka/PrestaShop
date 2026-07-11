@@ -1,0 +1,163 @@
+{# Packeta Delivery Methods — admin configuration page. MIT licensed. #}
+{% extends '@PrestaShop/Admin/layout.html.twig' %}
+{% form_theme settingsForm '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit.html.twig' %}
+{% form_theme mappingForm '@PrestaShop/Admin/TwigTemplateForm/prestashop_ui_kit.html.twig' %}
+
+{% block content %}
+  <div class="row justify-content-center">
+    <div class="col-xl-10">
+
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3 class="card-header-title">{{ 'Packeta account'|trans({}, 'Modules.Dppacketa.Admin') }}</h3>
+        </div>
+        {{ form_start(settingsForm, {action: path('dp_packeta_configuration')}) }}
+        <div class="card-body">
+          {{ form_widget(settingsForm) }}
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" type="submit">{{ 'Save'|trans({}, 'Admin.Actions') }}</button>
+          </div>
+        </div>
+        {{ form_end(settingsForm) }}
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3 class="card-header-title">{{ 'Linked carriers'|trans({}, 'Modules.Dppacketa.Admin') }}</h3>
+        </div>
+        <div class="card-body">
+          {% if mappings is empty %}
+            <p class="text-muted mb-0">{{ 'No carrier is linked to Packeta yet. Link one below.'|trans({}, 'Modules.Dppacketa.Admin') }}</p>
+          {% else %}
+            <div class="table-responsive">
+              <table class="table mb-0">
+                <thead>
+                  <tr>
+                    <th>{{ 'Carrier'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                    <th>{{ 'Packeta delivery method'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                    <th>{{ 'Countries'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                    <th>{{ 'Vendor groups'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                    <th>{{ 'Packeta carrier ID'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                    <th>{{ 'Enabled'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                    <th class="text-right">{{ 'Actions'|trans({}, 'Admin.Global') }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for mapping in mappings %}
+                    <tr>
+                      <td>
+                        {% if mapping.carrier_name %}
+                          {{ mapping.carrier_name }} <span class="text-muted">(#{{ mapping.id_reference }})</span>
+                          {% if not mapping.carrier_active %}
+                            <span class="badge badge-warning">{{ 'Carrier disabled'|trans({}, 'Modules.Dppacketa.Admin') }}</span>
+                          {% endif %}
+                        {% else %}
+                          <span class="badge badge-danger">{{ 'Carrier deleted'|trans({}, 'Modules.Dppacketa.Admin') }} (#{{ mapping.id_reference }})</span>
+                        {% endif %}
+                      </td>
+                      <td>
+                        {% if mapping.mode == 'pickup_point' %}
+                          {{ 'Pickup points (widget)'|trans({}, 'Modules.Dppacketa.Admin') }}
+                        {% else %}
+                          {{ 'Home delivery (external carrier)'|trans({}, 'Modules.Dppacketa.Admin') }}
+                        {% endif %}
+                      </td>
+                      <td>{{ mapping.countries|default('—') }}</td>
+                      <td>{{ mapping.vendor_groups|default('—') }}</td>
+                      <td>{{ mapping.packeta_carrier_id|default('—') }}</td>
+                      <td>
+                        <form method="post" action="{{ path('dp_packeta_mapping_toggle', {mappingId: mapping.id_dp_packeta_carrier}) }}">
+                          <button type="submit" class="btn btn-sm {{ mapping.active ? 'btn-outline-success' : 'btn-outline-danger' }}">
+                            {{ mapping.active ? 'Yes'|trans({}, 'Admin.Global') : 'No'|trans({}, 'Admin.Global') }}
+                          </button>
+                        </form>
+                      </td>
+                      <td class="text-right text-nowrap">
+                        <a class="btn btn-sm btn-outline-primary" href="{{ path('dp_packeta_mapping_edit', {mappingId: mapping.id_dp_packeta_carrier}) }}">
+                          {{ 'Edit'|trans({}, 'Admin.Actions') }}
+                        </a>
+                        <form method="post" class="d-inline" action="{{ path('dp_packeta_mapping_delete', {mappingId: mapping.id_dp_packeta_carrier}) }}"
+                              onsubmit="return confirm('{{ 'Unlink this carrier? Its original settings will be restored.'|trans({}, 'Modules.Dppacketa.Admin')|e('js') }}');">
+                          <button type="submit" class="btn btn-sm btn-outline-danger">{{ 'Delete'|trans({}, 'Admin.Actions') }}</button>
+                        </form>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3 class="card-header-title">
+            {% if editedMapping %}
+              {{ 'Edit carrier link'|trans({}, 'Modules.Dppacketa.Admin') }}
+            {% else %}
+              {{ 'Link a carrier to Packeta'|trans({}, 'Modules.Dppacketa.Admin') }}
+            {% endif %}
+          </h3>
+        </div>
+        {% set mappingAction = editedMapping
+          ? path('dp_packeta_mapping_edit', {mappingId: editedMapping.id_dp_packeta_carrier})
+          : path('dp_packeta_configuration') %}
+        {{ form_start(mappingForm, {action: mappingAction}) }}
+        <div class="card-body">
+          <p class="text-muted">
+            {{ 'Create the carrier first under Shipping > Carriers (name, price ranges, zones), then link it here. Linking claims the carrier for this module; unlinking restores it.'|trans({}, 'Modules.Dppacketa.Admin') }}
+          </p>
+          {{ form_widget(mappingForm) }}
+        </div>
+        <div class="card-footer">
+          <div class="d-flex justify-content-between">
+            {% if editedMapping %}
+              <a class="btn btn-outline-secondary" href="{{ path('dp_packeta_configuration') }}">{{ 'Cancel'|trans({}, 'Admin.Actions') }}</a>
+            {% else %}
+              <span></span>
+            {% endif %}
+            <button class="btn btn-primary" type="submit">{{ 'Save'|trans({}, 'Admin.Actions') }}</button>
+          </div>
+        </div>
+        {{ form_end(mappingForm) }}
+      </div>
+
+      {% if packetaCarriers is not empty %}
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3 class="card-header-title">{{ 'Packeta external carriers (from your account)'|trans({}, 'Modules.Dppacketa.Admin') }}</h3>
+          </div>
+          <div class="card-body">
+            <p class="text-muted">{{ 'Use these IDs in the "Packeta carrier ID" field above.'|trans({}, 'Modules.Dppacketa.Admin') }}</p>
+            <div class="table-responsive" style="max-height: 320px; overflow-y: auto;">
+              <table class="table table-sm mb-0">
+                <thead>
+                  <tr>
+                    <th>{{ 'ID'|trans({}, 'Admin.Global') }}</th>
+                    <th>{{ 'Name'|trans({}, 'Admin.Global') }}</th>
+                    <th>{{ 'Country'|trans({}, 'Admin.Global') }}</th>
+                    <th>{{ 'Pickup points'|trans({}, 'Modules.Dppacketa.Admin') }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for carrier in packetaCarriers %}
+                    <tr>
+                      <td><code>{{ carrier.id }}</code></td>
+                      <td>{{ carrier.name }}</td>
+                      <td>{{ carrier.country|upper }}</td>
+                      <td>{{ carrier.pickupPoints ? 'Yes'|trans({}, 'Admin.Global') : 'No'|trans({}, 'Admin.Global') }}</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+    </div>
+  </div>
+{% endblock %}
